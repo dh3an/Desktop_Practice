@@ -8,11 +8,16 @@
  tspan = [0 10];
  options = [];
  [t,y] = ode23(@Example,tspan,y0,options,params);
-
+ 
+ tspan = [10 20];
+ options = [];
+ [t2,y2] = ode23(@Example,tspan,y(end,:),options,params);
  % Plot results
  figure;
- plot(t,y);
+ tf = vertcat(t,t2);
+ yf = vertcat(y,y2);
+ plot(tf,yf);
  xlabel('Time (sec)');
  ylabel('Fractional Species Activation');
  speciesNames = params{4};
- legend(speciesNames); 
+ legend(speciesNames);
